@@ -8,6 +8,6 @@ namespace Wox.Plugin.Emoji
 {
     class ApiResponse
     {
-        public List<Emoji> results;
+        public List<Emoji> results = null;
     }
 }

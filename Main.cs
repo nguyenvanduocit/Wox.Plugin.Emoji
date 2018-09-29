@@ -13,12 +13,35 @@ using System.Net;
 using Wox.Infrastructure.Logger;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Wox.Plugin.PasswordGenerator
 {
     class Main : IPlugin
     {
         private PluginInitContext context;
+
+        /* The emoji 1.0 consists of limited number of icons, which have 4 byte, e.g. 0x263A Unicode representation
+         * However, the later emojis have something like 0x1f600 representation
+         * Hence we adapt two methods to different cases without doing tricks with encoding and bytes
+         */
+        private String IconPathFallback(String emoji) {
+            String dllPath = Path.GetDirectoryName(new Uri(this.GetType().Assembly.CodeBase).AbsolutePath);
+            int x = emoji[0];
+            String EmojiPath_v1 = dllPath + "\\Icons\\" + x.ToString() + ".png";
+            String EmojiPath_v1_plus = dllPath + "\\Icons\\" + emoji + ".png";
+            String FallbackPath = "Images\\copy.png";
+            if (File.Exists(EmojiPath_v1)) {
+                return EmojiPath_v1;
+            }
+            else if (File.Exists(EmojiPath_v1_plus)) {
+                return EmojiPath_v1_plus;
+            }
+            else {
+                return FallbackPath;
+            }
+            
+        }
 
         public List<Result> Query(Query query)
         {
@@ -41,7 +64,7 @@ namespace Wox.Plugin.PasswordGenerator
             {
                 Title = emoji,
                 SubTitle = "Copy to clipboard.",
-                IcoPath = "Images\\copy.png",
+                IcoPath = IconPathFallback(emoji),
                 Action = c =>
                 {
                     CopyToClipboard(emoji);
@@ -64,7 +87,7 @@ namespace Wox.Plugin.PasswordGenerator
             try {
                 result = Http.Get(api + Uri.EscapeUriString(query)).Result;
             }
-            catch (WebException e)
+            catch (WebException)
             {
                 context.API.ShowMsg("Emoji: Couldn't parse API search results.");
                 return new List<string>();
@@ -79,7 +102,7 @@ namespace Wox.Plugin.PasswordGenerator
             {
                 json = JsonConvert.DeserializeObject<ApiResponse>(result);
             }
-            catch (JsonSerializationException e)
+            catch (JsonSerializationException)
             {
                 context.API.ShowMsg("Emoji: Couldn't parse API search results.");
                 return new List<string>();
