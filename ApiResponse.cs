@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Wox.Plugin.Emoji
-{
+namespace Wox.Plugin.Emoji {
     class ApiResponse
     {
         public List<Emoji> results = null;

@@ -4,6 +4,8 @@
 
 ## Usage
 
+![usage](usage.gif)
+
 1. Alt Enter to launch Wox
 2. type 'emoji' and your keyword to search
 3. Press Enter or click on the result to copy to clipboard

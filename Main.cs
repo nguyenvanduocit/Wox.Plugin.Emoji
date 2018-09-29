@@ -1,22 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wox.Plugin;
-using System.Windows;
-using System.Windows.Forms;
-using System.Threading;
-using Wox.Plugin.Emoji;
-using Wox.Infrastructure.Http;
-using System.Net;
-using Wox.Infrastructure.Logger;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Windows.Forms;
+using Wox.Infrastructure.Http;
+using Wox.Plugin.Emoji;
 
-namespace Wox.Plugin.PasswordGenerator
-{
+namespace Wox.Plugin.PasswordGenerator {
     class Main : IPlugin
     {
         private PluginInitContext context;
