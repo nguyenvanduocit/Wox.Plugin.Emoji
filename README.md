@@ -19,3 +19,7 @@ In order to solve [the outline render issue](https://answers.microsoft.com/en-us
 2. write your own code or use this specific Python code to rename icon pngs into valid naming pattern. i.e. those icons whose Unicode is less than 0x1F600 should be written in decimal number, and the latter ones in Unicode character itself.
 
 In folder Pyscript provided a links list and a Python script to do this task. Download all the icon png in ./icons directory and run the script.
+
+## Released
+
+To test, put Icons folder in the plugin directory, and update with the .dll in Released folder.
