@@ -29,7 +29,7 @@ namespace Wox.Plugin.PasswordGenerator
                 var result = new Result
                 {
                     Title = "Search for Emoji",
-                    SubTitle = "Search for emoji and add to clipboard automatically.",
+                    SubTitle = "Search for Emoji and add to clipboard automatically.",
                     IcoPath = "Images\\app.png"
                 };
                 return new List<Result> { result };
@@ -40,7 +40,7 @@ namespace Wox.Plugin.PasswordGenerator
             results.AddRange(emojiList.Select(emoji => new Result
             {
                 Title = emoji,
-                SubTitle = "Coply to clipboard.",
+                SubTitle = "Copy to clipboard.",
                 IcoPath = "Images\\copy.png",
                 Action = c =>
                 {
@@ -66,7 +66,7 @@ namespace Wox.Plugin.PasswordGenerator
             }
             catch (WebException e)
             {
-                context.API.ShowMsg("emoji: Coundn't parse api search results.");
+                context.API.ShowMsg("Emoji: Couldn't parse API search results.");
                 return new List<string>();
             }
 
@@ -81,7 +81,7 @@ namespace Wox.Plugin.PasswordGenerator
             }
             catch (JsonSerializationException e)
             {
-                context.API.ShowMsg("emoji: Coundn't parse api search results.");
+                context.API.ShowMsg("Emoji: Couldn't parse API search results.");
                 return new List<string>();
             }
 
